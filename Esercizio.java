@@ -187,7 +187,7 @@ public class Esercizio {
     }
     
     public static int rimuoviDuplicati(int[] v, int n) {
-        int k=0, ;
+        int k=0;
         return k;
     }
     
