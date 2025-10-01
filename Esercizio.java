@@ -33,6 +33,8 @@ public class Esercizio {
                     i = Integer.parseInt( input.nextLine() );
                 } while (i < 0 || i > n);
 
+                // inserisciInVettore: metodo normale (copia)
+                // inserisciInVettoreFast: metodo ottimizzato
                 n = inserisciInVettoreFast(v, n, e, i);
             }
             if ( c.equals("E") ) {
@@ -42,6 +44,8 @@ public class Esercizio {
                         i = Integer.parseInt( input.nextLine() );
                     } while (i < 0 || i >= n);
 
+                    // eliminaDaVettore: metodo normale (con copia)
+                    // eliminaDaVettoreFast: metodo ottimizzato
                     n = eliminaDaVettoreFast(v, n, i);
                 } else {
                     System.out.println("Non posso eliminare celle da un vettore di un solo elemento");
@@ -60,6 +64,8 @@ public class Esercizio {
             if (c.equals("D")) {
                 System.out.println("Rimozione dei duplicati");
 
+                // posso usare una delle due versioni di rimuoviDuplicati.
+                // rimuoviDuplicatiFunz riusa la funzione eliminaDaVettore.
                 n = rimuoviDuplicatiFunz(v, n);
             }
             if (c.equals("V")) {
@@ -79,17 +85,79 @@ public class Esercizio {
             v[i] = 0;
         }
     }
+    
+    public static int eliminaDaVettore(int[] v, int n, int ie) {
+        int i, n2;
+
+        n2 = n - 1;
+        int[] w = new int[n2];
+
+        i = 0;
+        while (i <= ie - 1 && i < n) {
+            w[i] = v[i];
+            i = i + 1;
+        }
+        i = ie + 1;
+        while (i < n) {
+            w[i - 1] = v[i];
+            i = i + 1;
+        }
+
+        // Ricopio tutto in V perchè è il vettore che devo restituire dalla funzione.
+        i = 0;
+        while (i < n2) {
+            v[i] = w[i];
+            i = i + 1;
+        }
         
+        return n2;
+    }
+    
     public static int eliminaDaVettoreFast(int[] v, int n, int ie) {
-        return 0;
+        int n2=0;
+        return n2;
     }
     
-    public static int inserisciInVettore(int[] v, int n, int e, int ie) {        
-        return 0;
+    public static int inserisciInVettore(int[] v, int n, int e, int ie) {
+        int i, n2;
+
+        n2 = n + 1;
+        int[] w = new int[n2];
+
+        i = 0;
+        while (i <= ie - 1 && i < n) {
+            w[i] = v[i];
+            i = i + 1;
+        }
+        w[ie] = e;
+        i = ie + 1;
+        while (i < n2) {
+            w[i] = v[i - 1];
+            i = i + 1;
+        }
+
+        // Ricopio tutto in V perchè è il vettore che devo restituire dalla funzione.
+        i = 0;
+        while (i < n2) {
+            v[i] = w[i];
+            i = i + 1;
+        }
+        
+        return n2;
     }
     
-    public static int inserisciInVettoreFast(int[] v, int n, int e, int ie) {        
-        return 0;
+    public static int inserisciInVettoreFast(int[] v, int n, int e, int ie) {
+        int i, n2;
+
+        n2 = n + 1;
+        i = n2 - 1;
+        while (i >= ie + 1) {
+            v[i] = v[i - 1];
+            i = i - 1;
+        }
+        v[ie] = e;
+        
+        return n2;
     }
     
     public static String leggiComando() {
@@ -103,12 +171,28 @@ public class Esercizio {
         return c;
     }
     
-    public static int ricercaNelVettore(int[] v, int n, int valore) {        
-        return 0;
-    }
+    public static int ricercaNelVettore(int[] v, int n, int valore) {
+        int i, iTrovato;
+
+        i = 0;
+        iTrovato = -1;
+        while (i < n && iTrovato == -1) {
+            if (v[i] == valore) {
+                iTrovato = i;
+            }
+            i = i + 1;
+        }
         
+        return iTrovato;
+    }
+    
+    public static int rimuoviDuplicati(int[] v, int n) {
+        int k=0, ;
+        return k;
+    }
+    
     public static int rimuoviDuplicatiFunz(int[] v, int n) {        
-        return 0;
+        return n;
     }
     
     public static void visualizzaVettore(int[] v, int n) {
