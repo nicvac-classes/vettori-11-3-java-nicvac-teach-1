@@ -114,7 +114,15 @@ public class Esercizio {
     }
     
     public static int eliminaDaVettoreFast(int[] v, int n, int ie) {
-        int n2=0;
+        int i, n2;
+
+        n2 = n - 1;
+        i = ie;
+        while (i <= n - 2) {
+            v[i] = v[i + 1];
+            i = i + 1;
+        }
+        
         return n2;
     }
     
