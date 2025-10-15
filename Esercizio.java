@@ -26,7 +26,7 @@ public class Esercizio {
         do {
             c = leggiComando();
             if (c.equals("I")) {
-                System.out.println("Valore da inserire");
+                System.out.println("Valore da inserire nel vettore");
                 e = Integer.parseInt( input.nextLine() );
                 do {
                     System.out.println("In quale posizione?");
