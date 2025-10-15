@@ -114,7 +114,15 @@ public class Esercizio {
     }
     
     public static int eliminaDaVettoreFast(int[] v, int n, int ie) {
-        int n2=0;
+        int i, n2;
+
+        n2 = n - 1;
+        i = ie;
+        while (i <= n - 2) {
+            v[i] = v[i + 1];
+            i = i + 1;
+        }
+        
         return n2;
     }
     
@@ -187,11 +195,60 @@ public class Esercizio {
     }
     
     public static int rimuoviDuplicati(int[] v, int n) {
-        int k=0;
+        boolean duplicato;
+        int i, j, k;
+
+        k = 0;
+        int[] w = new int[n];
+
+        i = 0;
+        while (i <= n - 1) {
+            duplicato = false;
+            j = i + 1;
+            while (j <= n - 1 && duplicato == false) {
+                if (v[i] == v[j]) {
+                    duplicato = true;
+                }
+                j = j + 1;
+            }
+            if (duplicato == false) {
+                w[k] = v[i];
+                k = k + 1;
+            } else {
+
+                // Ignoro V[i] perchè più avanti c'è un suo duplicato.
+                // Copierò solo l'ultimo valore duplicato in W.
+            }
+            i = i + 1;
+        }
+
+        // Ricopio W in V perchè V è il vettore parametro di I/O
+        i = 0;
+        while (i < k) {
+            v[i] = w[i];
+            i = i + 1;
+        }
+        
         return k;
     }
     
-    public static int rimuoviDuplicatiFunz(int[] v, int n) {        
+    public static int rimuoviDuplicatiFunz(int[] v, int n) {
+        int i, j;
+
+        i = 0;
+        while (i <= n - 2) {
+            j = i + 1;
+            while (j <= n - 1) {
+                if (v[i] == v[j]) {
+                    System.out.println("Elimino " + v[j] + " da cella " + j);
+                    n = eliminaDaVettoreFast(v, n, j);
+                } else {
+                    j = j + 1;
+                }
+            }
+            i = i + 1;
+        }
+        
         return n;
     }
     
